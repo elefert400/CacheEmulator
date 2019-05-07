@@ -9,13 +9,14 @@ Parser::Parser()
   //initializing item count in arrays
   size = 0;
 
-  cout << "before" << endl;
   //populating arrays
   parseP0();
   parseP1();
   parseP2();
-  //parseP3();
-  cout << "after" << endl;
+  parseP3();
+
+  //sorting arrays based on cycle, then processor
+  arraySort();
 }
 
 Parser::~Parser()
@@ -23,6 +24,53 @@ Parser::~Parser()
 
 }
 
+void Parser::intSwap(int* x, int* y)
+{
+    int temp = *x;
+    *x = *y;
+    *y = temp;
+}
+
+void Parser::stringSwap(string* x, string* y)
+{
+  string temp = *x;
+  *x = *y;
+  *y = temp;
+}
+
+void Parser::arraySort()
+{
+    int i, j, minIndex;
+
+    //one by one move boundary of unsorted subarray
+    for (i = 0; i < size - 1; i++)
+    {
+        //find the minimum element in the cycles array
+        minIndex = i;
+        for (j = i + 1; j < size; j++)
+        {
+          if (cycles[j] < cycles[minIndex])
+          {
+            minIndex = j;
+          }
+          else if(cycles[j] == cycles[minIndex])
+          {
+            if(processor[j] < processor[minIndex])
+            {
+              minIndex = j;
+            }
+          }
+        }
+
+        //swap minimum element with the first element of array
+        intSwap(&processor[minIndex], &processor[i]);
+        intSwap(&cycles[minIndex], &cycles[i]);
+        intSwap(&readWrite[minIndex], &readWrite[i]);
+        stringSwap(&hex[minIndex], &hex[i]);
+    }
+}
+
+//reads data from p0.txt and populates arrays
 void Parser::parseP0()
 {
   //creating variables for storing data
@@ -54,6 +102,7 @@ void Parser::parseP0()
   p0.close();
 }
 
+//reads data from p1.txt and populates arrays
 void Parser::parseP1()
 {
   //creating variables for storing data
@@ -85,6 +134,7 @@ void Parser::parseP1()
   p1.close();
 }
 
+//reads data from p2.txt and populates arrays
 void Parser::parseP2()
 {
   //creating variables for storing data
@@ -116,6 +166,7 @@ void Parser::parseP2()
   p2.close();
 }
 
+//reads data from p3.txt and populates arrays
 void Parser::parseP3()
 {
   //creating variables for storing data
