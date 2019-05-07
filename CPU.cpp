@@ -163,3 +163,8 @@ int CPU::gets()
 {
   return s;
 }
+
+int CPU::gete()
+{
+  return e;
+}

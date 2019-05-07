@@ -66,6 +66,7 @@ public:
   int getDirtyWrite();
   int getm();
   int geti();
+  int gete();
   int geto();
   int gets();
 };
