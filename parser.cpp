@@ -96,7 +96,7 @@ void Parser::parseP2()
   }
 
   //read from file
-  while(p0 >> cycle >> rw >> address)
+  while(p2 >> cycle >> rw >> address)
   {
     processor[size] = 2;
     cycles[size] = cycle;
