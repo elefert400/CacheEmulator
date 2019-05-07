@@ -39,17 +39,18 @@ string hexToBinary(string hex)
 
 int getIndex(string binary)
 {
+  string str;
   int total = 0;
   int exponent = 5;
   int calcExponent;
   for(int i = 6; i < 15; i++)
   {
     calcExponent = i - exponent;
-    cout << &binary[32 - i] << endl;
-    if(&binary[32 - i] == "1")
+    str = binary[i];
+    if(str[0] == '1')
     {
       total = total + pow(2, calcExponent);
-      cout << "total " << total;
+      cout << "total " << total << endl;
     }
   }
   return total;
@@ -71,7 +72,7 @@ int main()
 {
   // all the declarations
   int processor, rw, index;
-  string hex, tag;
+  string hex, tag, bin;
   Parser* mypars = new Parser();
   CPU* p0 = new CPU();
   CPU* p1 = new CPU();
@@ -86,9 +87,9 @@ int main()
     rw = mypars->getReadWrite(i);
     hex = mypars->getHex(i);
 
-    hex = hexToBinary(hex);
-    index = getIndex(hex);
-    tag = getTag(hex);
+    bin = hexToBinary(hex);
+    index = getIndex(bin);
+    tag = getTag(bin);
     /*
     READS
     check if the processor has the data if it does do nothing
