@@ -154,10 +154,10 @@ int main()
 
   //total number of invalidations due to coherence in each processor
   cout << "The total number of invalidations due to coherence (i.e. not including line replacement) in each processor in the following format." << endl;
-  cout << "P0 Invalidation from: m = " << xxx << ", o = " << xxx << ", e = " << xxx << ", s = " << xxx << ", i = " << xxx << endl;
-  cout << "P1 Invalidation from: m = " << xxx << ", o = " << xxx << ", e = " << xxx << ", s = " << xxx << ", i = " << xxx << endl;
-  cout << "P2 Invalidation from: m = " << xxx << ", o = " << xxx << ", e = " << xxx << ", s = " << xxx << ", i = " << xxx << endl;
-  cout << "P3 Invalidation from: m = " << xxx << ", o = " << xxx << ", e = " << xxx << ", s = " << xxx << ", i = " << xxx << endl;
+  cout << "P0 Invalidation from: m = " << xxx << ", o = " << xxx << ", e = " << xxx << ", s = " << xxx << endl;
+  cout << "P1 Invalidation from: m = " << xxx << ", o = " << xxx << ", e = " << xxx << ", s = " << xxx << endl;
+  cout << "P2 Invalidation from: m = " << xxx << ", o = " << xxx << ", e = " << xxx << ", s = " << xxx << endl;
+  cout << "P3 Invalidation from: m = " << xxx << ", o = " << xxx << ", e = " << xxx << ", s = " << xxx << endl;
 
   //total number of dirty writebacks for each processor
   cout << "The number of dirty writebacks from each processor." << endl;
