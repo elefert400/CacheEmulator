@@ -41,12 +41,12 @@ int getIndex(string binary)
 {
   string str;
   int total = 0;
-  int exponent = 5;
+  int exponent = 6;
   int calcExponent;
   for(int i = 6; i < 15; i++)
   {
     calcExponent = i - exponent;
-    str = binary[i];
+    str = binary[32 - i];
     if(str[0] == '1')
     {
       total = total + pow(2, calcExponent);
