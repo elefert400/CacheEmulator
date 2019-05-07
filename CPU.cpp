@@ -18,7 +18,7 @@ CPU::CPU()
 
   for(int i = 0; i < arraySize; i++)
   {
-    states[i] = "";
+    states[i] = "I";
     tag[i] = "";
   }
 }
@@ -28,82 +28,82 @@ CPU::~CPU()
 
 }
 
-void CPU::exclusiveToModified()
+void CPU::exclusiveToModified(int index)
 {
 
 }
 
-void CPU::exclusiveToInvalid()
+void CPU::exclusiveToInvalid(int index)
 {
 
 }
 
-void CPU::exclusiveToShared()
+void CPU::exclusiveToShared(int index)
 {
 
 }
 
-void CPU::exclusiveToExclusve()
+void CPU::exclusiveToExclusve(int index)
 {
 
 }
 
-void CPU::modifiedToOwner()
+void CPU::modifiedToOwner(int index)
 {
 
 }
 
-void CPU::modifiedToInvalid()
+void CPU::modifiedToInvalid(int index)
 {
 
 }
 
-void CPU::modifiedToModified()
+void CPU::modifiedToModified(int index)
 {
 
 }
 
-void CPU::ownerToOwner()
+void CPU::ownerToOwner(int index)
 {
 
 }
 
-void CPU::ownerToModifed()
+void CPU::ownerToModifed(int index)
 {
 
 }
 
-void CPU::ownerToInvalid()
+void CPU::ownerToInvalid(int index)
 {
 
 }
 
-void CPU::sharedToShared()
+void CPU::sharedToShared(int index)
 {
 
 }
 
-void CPU::sharedToModified()
+void CPU::sharedToModified(int index)
 {
 
 }
 
-void CPU::sharedToInvalid()
+void CPU::sharedToInvalid(int index)
 {
 
 }
 
-void CPU::invalidToModified()
+void CPU::invalidToModified(int index)
 {
 
 }
 
-void CPU::invalidToExclusive()
+void CPU::invalidToExclusive(int index)
 {
 
 }
 
-void CPU::invalidToShared()
+void CPU::invalidToShared(int index)
 {
 
 }

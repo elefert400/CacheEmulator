@@ -30,26 +30,26 @@ public:
   CPU();
   ~CPU();
   //state change functions
-  void exclusiveToModified();
-  void exclusiveToInvalid();
-  void exclusiveToShared();
-  void exclusiveToExclusve();
+  void exclusiveToModified(int index);
+  void exclusiveToInvalid(int index);
+  void exclusiveToShared(int index);
+  void exclusiveToExclusve(int index);
 
-  void modifiedToOwner();
-  void modifiedToInvalid();
-  void modifiedToModified();
+  void modifiedToOwner(int index);
+  void modifiedToInvalid(int index);
+  void modifiedToModified(int index);
 
-  void ownerToOwner();
-  void ownerToModifed();
-  void ownerToInvalid();
+  void ownerToOwner(int index);
+  void ownerToModifed(int index);
+  void ownerToInvalid(int index);
 
-  void sharedToShared();
-  void sharedToModified();
-  void sharedToInvalid();
+  void sharedToShared(int index);
+  void sharedToModified(int index);
+  void sharedToInvalid(int index);
 
-  void invalidToModified();
-  void invalidToExclusive();
-  void invalidToShared();
+  void invalidToModified(int index);
+  void invalidToExclusive(int index);
+  void invalidToShared(int index);
 
   //functions to help get info from the CPU
   bool find(string findMe);
