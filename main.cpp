@@ -1,6 +1,7 @@
 #include "CPU.h"
 #include "CPU.cpp"
 #include <iostream>
+#include <fstream>
 using namespace std;
 
 int main()
@@ -10,7 +11,10 @@ int main()
   int p0Cycle, p1Cycle, p2Cycle, p3Cycle;
   int p0ReadWrite, p1ReadWrite, p2ReadWrite, p3ReadWrite;
   string p0Address, p1Address, p2Address, p3Address;
-  ifstream p0, p1, p2, p3;
+  ifstream p0;
+  ifstream p1;
+  ifstream p2;
+  ifstream p3;
   //opening file
   p0.open("p0.txt");
   p1.open("p1.txt");
@@ -29,5 +33,5 @@ int main()
     clockCycle++;
   }
   //closing file
-  input.close();
+  p0.close();
 }
