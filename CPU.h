@@ -50,6 +50,8 @@ public:
   //functions to help get info from the CPU
   bool find(string findMe);
   string stateIn(int index);
+  void addToArray(string newString);
+  int findIndex(string findMe);
 
   //gets the final variables for output
   int getp0transfers();
