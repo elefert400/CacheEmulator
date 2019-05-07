@@ -4,22 +4,29 @@
 #include <string>
 using namespace std;
 
-Parser::parser()
+Parser::Parser()
 {
   //initializing item count in arrays
   size = 0;
 
+  cout << "before" << endl;
   //populating arrays
   parseP0();
   parseP1();
   parseP2();
-  parseP3();
+  //parseP3();
+  cout << "after" << endl;
+}
+
+Parser::~Parser()
+{
+
 }
 
 void Parser::parseP0()
 {
   //creating variables for storing data
-  int processor, cycle, rw;
+  int cycle, rw;
   string address;
   ifstream p0;
 
@@ -50,7 +57,7 @@ void Parser::parseP0()
 void Parser::parseP1()
 {
   //creating variables for storing data
-  int processor, cycle, rw;
+  int cycle, rw;
   string address;
   ifstream p1;
 
@@ -81,7 +88,7 @@ void Parser::parseP1()
 void Parser::parseP2()
 {
   //creating variables for storing data
-  int processor, cycle, rw;
+  int cycle, rw;
   string address;
   ifstream p2;
 
@@ -112,7 +119,7 @@ void Parser::parseP2()
 void Parser::parseP3()
 {
   //creating variables for storing data
-  int processor, cycle, rw;
+  int cycle, rw;
   string address;
   ifstream p3;
 
