@@ -1,34 +1,36 @@
 #include "CPU.h"
 #include "CPU.cpp"
 #include "parser.h"
+#include "parser.cpp"
 #include <iostream>
 #include <fstream>
 #include <cmath>
+#include <string>
 using namespace std;
 //tag 18 bits index 9 bits and the offset has 5
 string hexToBinary(string hex)
 	{
 		string binary = "";
-		for (int i = 0; i < hex.length (); ++i)
+		for (int i = 2; i < hex.length (); ++i)
 		{
-			switch (sHex [i])
+			switch (hex [i])
 			{
-				case '0': sReturn.append ("0000"); break;
-				case '1': sReturn.append ("0001"); break;
-				case '2': sReturn.append ("0010"); break;
-				case '3': sReturn.append ("0011"); break;
-				case '4': sReturn.append ("0100"); break;
-				case '5': sReturn.append ("0101"); break;
-			  case '6': sReturn.append ("0110"); break;
-				case '7': sReturn.append ("0111"); break;
-				case '8': sReturn.append ("1000"); break;
-				case '9': sReturn.append ("1001"); break;
-				case 'a': sReturn.append ("1010"); break;
-				case 'b': sReturn.append ("1011"); break;
-				case 'c': sReturn.append ("1100"); break;
-				case 'd': sReturn.append ("1101"); break;
-				case 'e': sReturn.append ("1110"); break;
-				case 'f': sReturn.append ("1111"); break;
+				case '0': binary.append ("0000"); break;
+				case '1': binary.append ("0001"); break;
+				case '2': binary.append ("0010"); break;
+				case '3': binary.append ("0011"); break;
+				case '4': binary.append ("0100"); break;
+				case '5': binary.append ("0101"); break;
+			  case '6': binary.append ("0110"); break;
+				case '7': binary.append ("0111"); break;
+				case '8': binary.append ("1000"); break;
+				case '9': binary.append ("1001"); break;
+				case 'a': binary.append ("1010"); break;
+				case 'b': binary.append ("1011"); break;
+				case 'c': binary.append ("1100"); break;
+				case 'd': binary.append ("1101"); break;
+				case 'e': binary.append ("1110"); break;
+				case 'f': binary.append ("1111"); break;
 			}
 		}
 		return binary;
@@ -42,24 +44,37 @@ int getIndex(string binary)
   for(int i = 5; i < 14; i++)
   {
     calcExponent = i - exponent;
-    if(binary[i] == "1")
+    if(&binary[i] == "1")
     {
       total = total + pow(2, calcExponent);
     }
   }
   return total;
 }
+
+string getTag(string binary)
+{
+  string tag;
+  int tracker = 0;
+  for(int i = 14; i < 32; i++)
+  {
+    tag[tracker] = binary[i];
+    tracker++;
+  }
+  return tag;
+}
+
 int main()
 {
   // all the declarations
   int processor, rw, index;
-  string hex;
-  Parser* mypars = new parser();
+  string hex, tag;
+  Parser* mypars = new Parser();
   CPU* p0 = new CPU();
   CPU* p1 = new CPU();
   CPU* p2 = new CPU();
   CPU* p3 = new CPU();
-  int parseSize = parser->getSize();
+  int parseSize = mypars->getSize();
 
   //main loop for running everything
   for(int i = 0; i < parseSize; i++)
@@ -70,6 +85,7 @@ int main()
 
     hex = hexToBinary(hex);
     index = getIndex(hex);
+    tag = getTag(hex);
     /*
     READS
     check if the processor has the data if it does do nothing
