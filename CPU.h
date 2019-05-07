@@ -17,6 +17,7 @@ private:
   int dirtyWrite;
 
   int m;
+  int e;
   int o;
   int s;
   int i;

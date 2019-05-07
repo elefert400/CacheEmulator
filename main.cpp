@@ -33,6 +33,7 @@ string hexToBinary(string hex)
 				case 'f': binary.append ("1111"); break;
 			}
 		}
+    cout << binary << endl;
 		return binary;
 	}
 
@@ -41,12 +42,14 @@ int getIndex(string binary)
   int total = 0;
   int exponent = 5;
   int calcExponent;
-  for(int i = 5; i < 14; i++)
+  for(int i = 6; i < 15; i++)
   {
     calcExponent = i - exponent;
-    if(&binary[i] == "1")
+    cout << &binary[32 - i] << endl;
+    if(&binary[32 - i] == "1")
     {
       total = total + pow(2, calcExponent);
+      cout << "total " << total;
     }
   }
   return total;
@@ -139,6 +142,34 @@ int main()
       }//checking processor 3
     }//end write
   }//end main loop
+
+/*
+  //expected output for project
+  //total number of cache to cache transfers for each processor pair
+  cout << "The total number of cache-to-cache transfers for each processor pair in the following format."
+  cout << "P0 cache transfers: <p0-p1> = " << xxx << ", <p0-p2> = " << xxx << ", <p0-p3> = " << xxx << endl;
+  cout << "P1 cache transfers: <p1-p0> = " << xxx << ", <p1-p2> = " << xxx << ", <p1-p3> = " << xxx << endl;
+  cout << "P2 cache transfers: <p2-p0> = " << xxx << ", <p2-p1> = " << xxx << ", <p2-p3> = " << xxx << endl;
+  cout << "P3 cache transfers: <p3-p0> = " << xxx << ", <p3-p1> = " << xxx << ", <p3-p2> = " << xxx << endl;
+
+  //total number of invalidations due to coherence in each processor
+  cout << "The total number of invalidations due to coherence (i.e. not including line replacement) in each processor in the following format." << endl;
+  cout << "P0 Invalidation from: m = " << xxx << ", o = " << xxx << ", e = " << xxx << ", s = " << xxx << ", i = " << xxx << endl;
+  cout << "P1 Invalidation from: m = " << xxx << ", o = " << xxx << ", e = " << xxx << ", s = " << xxx << ", i = " << xxx << endl;
+  cout << "P2 Invalidation from: m = " << xxx << ", o = " << xxx << ", e = " << xxx << ", s = " << xxx << ", i = " << xxx << endl;
+  cout << "P3 Invalidation from: m = " << xxx << ", o = " << xxx << ", e = " << xxx << ", s = " << xxx << ", i = " << xxx << endl;
+
+  //total number of dirty writebacks for each processor
+  cout << "The number of dirty writebacks from each processor." << endl;
+  cout << "P0 = " << xxx << ", P1 = " << xxx << ", P2 = " << xxx << ", P3 = " << xxx << endl;
+
+  //number of lines in each state at the end  of the simulation for each processor
+  cout << "The number of lines in each state at the end the simulation for each processor." << endl;
+  cout << "P0: m = " << xxx << ", o = " << xxx << ", e = " << xxx << ", s = " << xxx << ", i = " << xxx << endl;
+  cout << "P1: m = " << xxx << ", o = " << xxx << ", e = " << xxx << ", s = " << xxx << ", i = " << xxx << endl;
+  cout << "P2: m = " << xxx << ", o = " << xxx << ", e = " << xxx << ", s = " << xxx << ", i = " << xxx << endl;
+  cout << "P3: m = " << xxx << ", o = " << xxx << ", e = " << xxx << ", s = " << xxx << ", i = " << xxx << endl;
+*/
 
   //garabage collection
   delete mypars;
