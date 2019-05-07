@@ -22,7 +22,7 @@ private:
   void parseP2();
   void parseP3();
   int getSize();
-  string getProcessor(int index);
+  int getProcessor(int index);
   int getCycle(int index);
   int getReadWrite(int index);
   string getHex(int index);

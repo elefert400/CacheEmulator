@@ -139,3 +139,28 @@ void Parser::parseP3()
   //closing file
   p3.close();
 }
+
+int Parser::getSize()
+{
+  return size;
+}
+
+int Parser::getProcessor(int index)
+{
+  return processor[index];
+}
+
+int Parser::getCycle(int index)
+{
+  return cycles[index];
+}
+
+int Parser::getReadWrite(int index)
+{
+  return readWrite[index];
+}
+
+string Parser::getHex(int index)
+{
+  return hex[index];
+}
