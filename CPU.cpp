@@ -18,7 +18,7 @@ CPU::CPU()
 
   for(int i = 0; i < arraySize; i++)
   {
-    states[i] = "";
+    states[i] = "I";
     tag[i] = "";
   }
 }
