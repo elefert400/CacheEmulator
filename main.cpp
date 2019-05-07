@@ -8,8 +8,5 @@ using namespace std;
 
 int main()
 {
-  cout << "hi" << endl;
   Parser flat;
-  cout << "bitch";
-
 }

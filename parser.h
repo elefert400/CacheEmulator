@@ -7,15 +7,18 @@ using namespace std;
 class Parser
 {
 private:
-  int processor[3455];
-  int cycles[3455];
-  int readWrite[3455];
-  string hex[3455];
+  int processor[3456];
+  int cycles[3456];
+  int readWrite[3456];
+  string hex[3456];
   int size;
 
 public:
   Parser();
   ~Parser();
+  void intSwap(int* x, int* y);
+  void stringSwap(string* x, string* y);
+  void arraySort();
   void parseP0();
   void parseP1();
   void parseP2();
