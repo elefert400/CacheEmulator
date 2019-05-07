@@ -1,5 +1,8 @@
-#idndef CPU_H
+#ifndef CPU_H
 #define CPU_H
+#include <string>
+#include <iostream>
+using namespace std;
 
 class CPU
 {
@@ -18,9 +21,10 @@ private:
   int s;
   int i;
 
-  int arraySize = 512;
+  const static int arraySize = 512;
   string states[arraySize];
   string tag[arraySize];
+
 public:
   //constructor destructor
   CPU();

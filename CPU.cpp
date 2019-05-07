@@ -28,12 +28,12 @@ CPU::~CPU()
 
 }
 
-void CPU::exclusiveToModified();
+void CPU::exclusiveToModified()
 {
 
 }
 
-void CPU::exclusiveToInvalid();
+void CPU::exclusiveToInvalid()
 {
 
 }
@@ -48,7 +48,7 @@ void CPU::exclusiveToExclusve()
 
 }
 
-void CPU::modifiedToOwner();
+void CPU::modifiedToOwner()
 {
 
 }
