@@ -50,21 +50,24 @@ int getIndex(string binary)
     if(str[0] == '1')
     {
       total = total + pow(2, calcExponent);
-      cout << "total " << total << endl;
     }
   }
+	//cout << "total " << total << endl;
   return total;
 }
 
 string getTag(string binary)
 {
   string tag;
-  int tracker = 0;
-  for(int i = 14; i < 32; i++)
+  for(int i = 0; i < 18; i++)
   {
-    tag[tracker] = binary[i];
-    tracker++;
+    tag[i] = binary[i];
   }
+	for(int k = 0; k < 18; k++)
+	{
+	cout << tag[k];
+	}
+	cout  << endl;
   return tag;
 }
 
@@ -72,7 +75,7 @@ int main()
 {
   // all the declarations
   int processor, rw, index;
-  string hex, tag, bin;
+  string hex, bin;
   Parser* mypars = new Parser();
   CPU* p0 = new CPU();
   CPU* p1 = new CPU();
@@ -89,7 +92,11 @@ int main()
 
     bin = hexToBinary(hex);
     index = getIndex(bin);
-    tag = getTag(bin);
+    //tag = getTag(bin);
+		char tag[18];
+		std::size_t length = bin.copy(tag,18,0);
+		tag[length]='\0';
+		cout << tag << endl;
     /*
     READS
     check if the processor has the data if it does do nothing
