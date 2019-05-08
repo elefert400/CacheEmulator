@@ -8,6 +8,8 @@
 #include <string>
 using namespace std;
 //tag 18 bits index 9 bits and the offset has 5
+
+//converting the hex value to binary and returning it as a string
 string hexToBinary(string hex)
 	{
 		string binary = "";
@@ -33,10 +35,10 @@ string hexToBinary(string hex)
 				case 'f': binary.append ("1111"); break;
 			}
 		}
-    cout << binary << endl;
 		return binary;
 	}
 
+//getting the index from the binary string
 int getIndex(string binary)
 {
   string str;
@@ -52,7 +54,6 @@ int getIndex(string binary)
       total = total + pow(2, calcExponent);
     }
   }
-	//cout << "total " << total << endl;
   return total;
 }
 
@@ -75,13 +76,18 @@ int main()
     rw = mypars->getReadWrite(i);
     hex = mypars->getHex(i);
 
+		//getting a binary number from the hex value
     bin = hexToBinary(hex);
+
+		//getting the index from the binary
     index = getIndex(bin);
-    //tag = getTag(bin);
+
+		//getting the tag from the binary
 		char tag[18];
-		std::size_t length = bin.copy(tag,18,0);
+		size_t length = bin.copy(tag,18,0);
 		tag[length]='\0';
-		cout << tag << endl;
+
+
     /*
     READS
     check if the processor has the data if it does do nothing
@@ -94,6 +100,8 @@ int main()
     update all other processors to invalidate their copies if it exists
     ?? write back to memory
     */
+
+
     //read
     if(rw == 0)
     {
