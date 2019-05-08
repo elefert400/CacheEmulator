@@ -56,21 +56,6 @@ int getIndex(string binary)
   return total;
 }
 
-string getTag(string binary)
-{
-  string tag;
-  for(int i = 0; i < 18; i++)
-  {
-    tag[i] = binary[i];
-  }
-	for(int k = 0; k < 18; k++)
-	{
-	cout << tag[k];
-	}
-	cout  << endl;
-  return tag;
-}
-
 int main()
 {
   // all the declarations
