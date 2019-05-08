@@ -33,7 +33,6 @@ string hexToBinary(string hex)
 				case 'f': binary.append ("1111"); break;
 			}
 		}
-    cout << binary << endl;
 		return binary;
 	}
 
@@ -50,7 +49,6 @@ int getIndex(string binary)
     if(str[0] == '1')
     {
       total = total + pow(2, calcExponent);
-      cout << "total " << total << endl;
     }
   }
   return total;
@@ -59,12 +57,12 @@ int getIndex(string binary)
 string getTag(string binary)
 {
   string tag;
-  int tracker = 0;
-  for(int i = 14; i < 32; i++)
+  for(int i = 0; i < 18; i++)
   {
-    tag[tracker] = binary[i];
-    tracker++;
+    tag[i] = binary[i];
+    cout << tag[i];
   }
+  cout << tag;
   return tag;
 }
 
