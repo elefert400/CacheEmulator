@@ -274,34 +274,3 @@ void CPU::incrementDirtyWriteBack()
 {
   dirtyWrite++;
 }
-
-
-/*
-//expected output for project
-//total number of cache to cache transfers for each processor pair
-cout << endl << endl;
-cout << "The total number of cache-to-cache transfers for each processor pair in the following format." << endl;
-cout << "P0 cache transfers: <p0-p1> = " << p0->getp1transfers() << ", <p0-p2> = " << p0->getp2transfers() << ", <p0-p3> = " << p0->getp3transfers() << endl;
-cout << "P1 cache transfers: <p1-p0> = " << p1->getp0transfers() << ", <p1-p2> = " << p1->getp2transfers() << ", <p1-p3> = " << p1->getp3transfers() << endl;
-cout << "P2 cache transfers: <p2-p0> = " << p2->getp0transfers() << ", <p2-p1> = " << p2->getp1transfers() << ", <p2-p3> = " << p2->getp3transfers() << endl;
-cout << "P3 cache transfers: <p3-p0> = " << p3->getp0transfers() << ", <p3-p1> = " << p3->getp1transfers() << ", <p3-p2> = " << p3->getp2transfers() << endl << endl;
-
-//total number of invalidations due to coherence in each processor
-cout << "The total number of invalidations due to coherence (i.e. not including line replacement) in each processor in the following format." << endl;
-cout << "P0 Invalidation from: m = " << p0->getInvalidM() << ", o = " << p0->getInvalidO() << ", e = " << p0->getInvalidE() << ", s = " << p0->getInvalidS() << endl;
-cout << "P1 Invalidation from: m = " << p1->getInvalidM() << ", o = " << p1->getInvalidO() << ", e = " << p1->getInvalidE() << ", s = " << p1->getInvalidS() << endl;
-cout << "P2 Invalidation from: m = " << p2->getInvalidM() << ", o = " << p2->getInvalidO() << ", e = " << p2->getInvalidE() << ", s = " << p2->getInvalidS() << endl;
-cout << "P3 Invalidation from: m = " << p3->getInvalidM() << ", o = " << p3->getInvalidO() << ", e = " << p3->getInvalidE() << ", s = " << p3->getInvalidS() << endl << endl;
-
-//total number of dirty writebacks for each processor
-cout << "The number of dirty writebacks from each processor." << endl;
-cout << "P0 = " << p0->getDirtyWrite() << ", P1 = " << p1->getDirtyWrite() << ", P2 = " << p2->getDirtyWrite() << ", P3 = " << p3->getDirtyWrite() << endl << endl;
-
-//number of lines in each state at the end  of the simulation for each processor
-cout << "The number of lines in each state at the end the simulation for each processor." << endl;
-cout << "P0: m = " << p0->getm() << ", o = " << p0->geto() << ", e = " << p0->gete() << ", s = " << p0->gets() << ", i = " << p0->geti() << endl;
-cout << "P1: m = " << p1->getm() << ", o = " << p1->geto() << ", e = " << p1->gete() << ", s = " << p1->gets() << ", i = " << p1->geti() << endl;
-cout << "P2: m = " << p2->getm() << ", o = " << p2->geto() << ", e = " << p2->gete() << ", s = " << p2->gets() << ", i = " << p2->geti() << endl;
-cout << "P3: m = " << p3->getm() << ", o = " << p3->geto() << ", e = " << p3->gete() << ", s = " << p3->gets() << ", i = " << p3->geti() << endl << endl;
-
-*/
