@@ -7,26 +7,29 @@ using namespace std;
 class CPU
 {
 private:
+  //variables to keep track of number of transfers
   int p0transfers;
   int p1transfers;
   int p2transfers;
   int p3transfers;
 
-  //need question 2 variables
-
+  //variable to keep track of number of dirty writes
   int dirtyWrite;
 
+  //variables to track final count in states array
   int m;
   int e;
   int o;
   int s;
   int i;
 
+  //variables to track number of transfers from any state to invalid state
   int invalidM;
   int invalidO;
   int invalidE;
   int invalidS;
 
+  //declaring arrays
   const static int arraySize = 512;
   string states[arraySize];
   string tag[arraySize];

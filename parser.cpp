@@ -24,6 +24,7 @@ Parser::~Parser()
 
 }
 
+//function to swap integer positions during sorting
 void Parser::intSwap(int* x, int* y)
 {
     int temp = *x;
@@ -31,6 +32,7 @@ void Parser::intSwap(int* x, int* y)
     *y = temp;
 }
 
+//function to swap string positions during sorting
 void Parser::stringSwap(string* x, string* y)
 {
   string temp = *x;
@@ -38,6 +40,7 @@ void Parser::stringSwap(string* x, string* y)
   *y = temp;
 }
 
+//function to sort arrays based on cycle number, then sort base off of processor priority
 void Parser::arraySort()
 {
     int i, j, minIndex;
@@ -88,7 +91,7 @@ void Parser::parseP0()
     exit(1);
   }
 
-  //read from file
+  //read from file and populating arrays with data
   while(p0 >> cycle >> rw >> address)
   {
     processor[size] = 0;
@@ -120,7 +123,7 @@ void Parser::parseP1()
     exit(1);
   }
 
-  //read from file
+  //read from file and populating arrays with data
   while(p1 >> cycle >> rw >> address)
   {
     processor[size] = 1;
@@ -152,7 +155,7 @@ void Parser::parseP2()
     exit(1);
   }
 
-  //read from file
+  //read from file and populating arrays with data
   while(p2 >> cycle >> rw >> address)
   {
     processor[size] = 2;
@@ -184,7 +187,7 @@ void Parser::parseP3()
     exit(1);
   }
 
-  //read from file
+  //read from file and populating arrays with data
   while(p3 >> cycle >> rw >> address)
   {
     processor[size] = 3;
@@ -198,26 +201,31 @@ void Parser::parseP3()
   p3.close();
 }
 
+//returns current item count of array
 int Parser::getSize()
 {
   return size;
 }
 
+//returns processor number at current index
 int Parser::getProcessor(int index)
 {
   return processor[index];
 }
 
+//returns current cycle at current index
 int Parser::getCycle(int index)
 {
   return cycles[index];
 }
 
+//returns current read/write bit at current index
 int Parser::getReadWrite(int index)
 {
   return readWrite[index];
 }
 
+//returns current hex string at current index
 string Parser::getHex(int index)
 {
   return hex[index];
