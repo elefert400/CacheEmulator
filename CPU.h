@@ -67,6 +67,7 @@ public:
   void incrementP1();
   void incrementP2();
   void incrementP3();
+  void incrementDirtyWriteBack();
 
   //gets the final variables for output
   int getp0transfers();
