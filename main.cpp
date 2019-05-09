@@ -126,7 +126,7 @@ int main()
 
 					if(state == "Exclusive")
 					{
-						p1->exclusivetoShared(index);
+						p1->exclusiveToShared(index);
 						//increment p1 shared
 						p0->invalidToShared(index);
 					}
@@ -154,7 +154,7 @@ int main()
 
 					if(state == "Exclusive")
 					{
-						p2->exclusivetoShared(index);
+						p2->exclusiveToShared(index);
 						//increment p2 shared
 						p0->invalidToShared(index);
 					}
@@ -182,7 +182,7 @@ int main()
 
 					if(state == "Exclusive")
 					{
-						p3->exclusivetoShared(index);
+						p3->exclusiveToShared(index);
 						//increment p3 shared
 						p0->invalidToShared(index);
 					}
@@ -223,7 +223,7 @@ int main()
 
 					if(state == "Exclusive")
 					{
-						p0->exclusivetoShared(index);
+						p0->exclusiveToShared(index);
 						//increment p1 shared
 						p1->invalidToShared(index);
 					}
@@ -251,7 +251,7 @@ int main()
 
 					if(state == "Exclusive")
 					{
-						p2->exclusivetoShared(index);
+						p2->exclusiveToShared(index);
 						//increment p2 shared
 						p1->invalidToShared(index);
 					}
@@ -279,7 +279,7 @@ int main()
 
 					if(state == "Exclusive")
 					{
-						p3->exclusivetoShared(index);
+						p3->exclusiveToShared(index);
 						//increment p3 shared
 						p1->invalidToShared(index);
 					}
@@ -320,7 +320,7 @@ int main()
 
 					if(state == "Exclusive")
 					{
-						p0->exclusivetoShared(index);
+						p0->exclusiveToShared(index);
 						//increment p0 shared
 						p2->invalidToShared(index);
 					}
@@ -348,7 +348,7 @@ int main()
 
 					if(state == "Exclusive")
 					{
-						p1->exclusivetoShared(index);
+						p1->exclusiveToShared(index);
 						//increment p1 shared
 						p2->invalidToShared(index);
 					}
@@ -376,7 +376,7 @@ int main()
 
 					if(state == "Exclusive")
 					{
-						p3->exclusivetoShared(index);
+						p3->exclusiveToShared(index);
 						//increment p3 shared
 						p2->invalidToShared(index);
 					}
@@ -417,7 +417,7 @@ int main()
 
 					if(state == "Exclusive")
 					{
-						p0->exclusivetoShared(index);
+						p0->exclusiveToShared(index);
 						//increment p0 shared
 						p3->invalidToShared(index);
 					}
@@ -445,7 +445,7 @@ int main()
 
 					if(state == "Exclusive")
 					{
-						p1->exclusivetoShared(index);
+						p1->exclusiveToShared(index);
 						//increment p1 shared
 						p3->invalidToShared(index);
 					}
@@ -473,7 +473,7 @@ int main()
 
 					if(state == "Exclusive")
 					{
-						p2->exclusivetoShared(index);
+						p2->exclusiveToShared(index);
 						//increment p2 shared
 						p3->invalidToShared(index);
 					}

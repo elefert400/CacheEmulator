@@ -134,7 +134,7 @@ bool CPU::find(string passedTag, int index)
 
 string CPU::stateIn(int index)
 {
-  return state[index];
+  return states[index];
 }
 
 int CPU::getp0transfers()
