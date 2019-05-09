@@ -109,9 +109,10 @@ void CPU::invalidToModified(int index)
   states[index] = "Modified";
 }
 
-void CPU::invalidToExclusive(int index)
+void CPU::invalidToExclusive(string newTag, int index)
 {
   states[index] = "Exclusive";
+  tag[index] = newTag;
 }
 
 void CPU::invalidToShared(int index)
@@ -133,7 +134,7 @@ bool CPU::find(string passedTag, int index)
 
 string CPU::stateIn(int index)
 {
-
+  return state[index];
 }
 
 int CPU::getp0transfers()
