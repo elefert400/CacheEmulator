@@ -8,8 +8,6 @@
 #include <string>
 using namespace std;
 //tag 18 bits index 9 bits and the offset has 5
-
-//converting the hex value to binary and returning it as a string
 string hexToBinary(string hex)
 	{
 		string binary = "";
@@ -35,10 +33,10 @@ string hexToBinary(string hex)
 				case 'f': binary.append ("1111"); break;
 			}
 		}
+    cout << binary << endl;
 		return binary;
 	}
 
-//getting the index from the binary string
 int getIndex(string binary)
 {
   string str;
@@ -54,14 +52,30 @@ int getIndex(string binary)
       total = total + pow(2, calcExponent);
     }
   }
+	//cout << "total " << total << endl;
   return total;
+}
+
+string getTag(string binary)
+{
+  string tag;
+  for(int i = 0; i < 18; i++)
+  {
+    tag[i] = binary[i];
+  }
+	for(int k = 0; k < 18; k++)
+	{
+	cout << tag[k];
+	}
+	cout  << endl;
+  return tag;
 }
 
 int main()
 {
   // all the declarations
   int processor, rw, index;
-  string hex, bin;
+  string hex, bin, state;
   Parser* mypars = new Parser();
   CPU* p0 = new CPU();
   CPU* p1 = new CPU();
@@ -76,18 +90,13 @@ int main()
     rw = mypars->getReadWrite(i);
     hex = mypars->getHex(i);
 
-		//getting a binary number from the hex value
     bin = hexToBinary(hex);
-
-		//getting the index from the binary
     index = getIndex(bin);
-
-		//getting the tag from the binary
+    //tag = getTag(bin);
 		char tag[18];
-		size_t length = bin.copy(tag,18,0);
+		std::size_t length = bin.copy(tag,18,0);
 		tag[length]='\0';
-
-
+		cout << tag << endl;
     /*
     READS
     check if the processor has the data if it does do nothing
@@ -100,26 +109,396 @@ int main()
     update all other processors to invalidate their copies if it exists
     ?? write back to memory
     */
-
-
     //read
     if(rw == 0)
     {
       if(processor == 0)
       {
+				if(p0->find(tag, index) == true && p0->stateIn(index) != "Invalid")
+				{
+					//we have the data we are trying to read and it is valid, do nothing
+				}
+				//p1 has a valid form of the data
+				else if(p1->find(tag, index) == true && p1->stateIn(index) != "Invalid")
+				{
+					//get the state of the data
+					state = p1->stateIn(index);
 
+					if(state == "Exclusive")
+					{
+						p1->exclusivetoShared(index);
+						//increment p1 shared
+						p0->invalidToShared(index);
+					}
+					if(state == "Shared")
+					{
+						//increment p1 shared
+						p0->invalidToShared(index);
+					}
+					if(state == "Modified")
+					{
+						p1->modifiedToOwner(index);
+						//incrememnt p1 shared
+						p0->invalidToShared(index);
+					}
+					if(state == "Owner")
+					{
+						//increment p1 shared
+						p0->invalidToShared(index);
+					}
+				}//end p1 look up
+				else if(p2->find(tag, index) == true && p2->stateIn(index) != "Invalid")
+				{
+					//get the state of the data
+					state = p2->stateIn(index);
+
+					if(state == "Exclusive")
+					{
+						p2->exclusivetoShared(index);
+						//increment p2 shared
+						p0->invalidToShared(index);
+					}
+					if(state == "Shared")
+					{
+						//increment p2 shared
+						p0->invalidToShared(index);
+					}
+					if(state == "Modified")
+					{
+						p2->modifiedToOwner(index);
+						//incrememnt p2 shared
+						p0->invalidToShared(index);
+					}
+					if(state == "Owner")
+					{
+						//increment p2 shared
+						p0->invalidToShared(index);
+					}
+				}//end p2 look up
+				else if(p3->find(tag, index) == true && p3->stateIn(index) != "Invalid")
+				{
+					//get the state of the data
+					state = p3->stateIn(index);
+
+					if(state == "Exclusive")
+					{
+						p3->exclusivetoShared(index);
+						//increment p3 shared
+						p0->invalidToShared(index);
+					}
+					if(state == "Shared")
+					{
+						//increment p3 shared
+						p0->invalidToShared(index);
+					}
+					if(state == "Modified")
+					{
+						p3->modifiedToOwner(index);
+						//incrememnt p3 shared
+						p0->invalidToShared(index);
+					}
+					if(state == "Owner")
+					{
+						//increment p3 shared
+						p0->invalidToShared(index);
+					}
+				}//end p3 look up
+				else
+				{
+					//update the tag array with the new tag and set it to the exclusive state
+					p0->invalidToExclusive(tag, index);
+				}//end base case to pull from memory
       }//checking processor 0
       if(processor == 1)
       {
+				if(p1->find(tag, index) == true && p1->stateIn(index) != "Invalid")
+				{
+					//we have the data we are trying to read and it is valid, do nothing
+				}
+				//p0 has a valid form of the data
+				else if(p0->find(tag, index) == true && p0->stateIn(index) != "Invalid")
+				{
+					//get the state of the data
+					state = p0->stateIn(index);
 
+					if(state == "Exclusive")
+					{
+						p0->exclusivetoShared(index);
+						//increment p1 shared
+						p1->invalidToShared(index);
+					}
+					if(state == "Shared")
+					{
+						//increment p1 shared
+						p1->invalidToShared(index);
+					}
+					if(state == "Modified")
+					{
+						p0->modifiedToOwner(index);
+						//incrememnt p1 shared
+						p1->invalidToShared(index);
+					}
+					if(state == "Owner")
+					{
+						//increment p1 shared
+						p1->invalidToShared(index);
+					}
+				}//end p1 look up
+				else if(p2->find(tag, index) == true && p2->stateIn(index) != "Invalid")
+				{
+					//get the state of the data
+					state = p2->stateIn(index);
+
+					if(state == "Exclusive")
+					{
+						p2->exclusivetoShared(index);
+						//increment p2 shared
+						p1->invalidToShared(index);
+					}
+					if(state == "Shared")
+					{
+						//increment p2 shared
+						p1->invalidToShared(index);
+					}
+					if(state == "Modified")
+					{
+						p2->modifiedToOwner(index);
+						//incrememnt p2 shared
+						p1->invalidToShared(index);
+					}
+					if(state == "Owner")
+					{
+						//increment p2 shared
+						p1->invalidToShared(index);
+					}
+				}//end p2 look up
+				else if(p3->find(tag, index) == true && p3->stateIn(index) != "Invalid")
+				{
+					//get the state of the data
+					state = p3->stateIn(index);
+
+					if(state == "Exclusive")
+					{
+						p3->exclusivetoShared(index);
+						//increment p3 shared
+						p1->invalidToShared(index);
+					}
+					if(state == "Shared")
+					{
+						//increment p3 shared
+						p1->invalidToShared(index);
+					}
+					if(state == "Modified")
+					{
+						p3->modifiedToOwner(index);
+						//incrememnt p3 shared
+						p1->invalidToShared(index);
+					}
+					if(state == "Owner")
+					{
+						//increment p3 shared
+						p1->invalidToShared(index);
+					}
+				}//end p3 look up
+				else
+				{
+					//update the tag array with the new tag and set it to the exclusive state
+					p1->invalidToExclusive(tag, index);
+				}//end base case to pull from memory
       }//checking processor 1
       if(processor == 2)
       {
+				if(p2->find(tag, index) == true && p2->stateIn(index) != "Invalid")
+				{
+					//we have the data we are trying to read and it is valid, do nothing
+				}
+				//p0 has a valid form of the data
+				else if(p0->find(tag, index) == true && p0->stateIn(index) != "Invalid")
+				{
+					//get the state of the data
+					state = p0->stateIn(index);
 
+					if(state == "Exclusive")
+					{
+						p0->exclusivetoShared(index);
+						//increment p0 shared
+						p2->invalidToShared(index);
+					}
+					if(state == "Shared")
+					{
+						//increment p0 shared
+						p2->invalidToShared(index);
+					}
+					if(state == "Modified")
+					{
+						p0->modifiedToOwner(index);
+						//incrememnt p0 shared
+						p2->invalidToShared(index);
+					}
+					if(state == "Owner")
+					{
+						//increment p0 shared
+						p2->invalidToShared(index);
+					}
+				}//end p0 look up
+				else if(p1->find(tag, index) == true && p1->stateIn(index) != "Invalid")
+				{
+					//get the state of the data
+					state = p1->stateIn(index);
+
+					if(state == "Exclusive")
+					{
+						p1->exclusivetoShared(index);
+						//increment p1 shared
+						p2->invalidToShared(index);
+					}
+					if(state == "Shared")
+					{
+						//increment p1 shared
+						p2->invalidToShared(index);
+					}
+					if(state == "Modified")
+					{
+						p1->modifiedToOwner(index);
+						//incrememnt p1 shared
+						p2->invalidToShared(index);
+					}
+					if(state == "Owner")
+					{
+						//increment p1 shared
+						p2->invalidToShared(index);
+					}
+				}//end p1 look up
+				else if(p3->find(tag, index) == true && p3->stateIn(index) != "Invalid")
+				{
+					//get the state of the data
+					state = p3->stateIn(index);
+
+					if(state == "Exclusive")
+					{
+						p3->exclusivetoShared(index);
+						//increment p3 shared
+						p2->invalidToShared(index);
+					}
+					if(state == "Shared")
+					{
+						//increment p3 shared
+						p2->invalidToShared(index);
+					}
+					if(state == "Modified")
+					{
+						p3->modifiedToOwner(index);
+						//incrememnt p3 shared
+						p2->invalidToShared(index);
+					}
+					if(state == "Owner")
+					{
+						//increment p3 shared
+						p2->invalidToShared(index);
+					}
+				}//end p3 look up
+				else
+				{
+					//update the tag array with the new tag and set it to the exclusive state
+					p2->invalidToExclusive(tag, index);
+				}//end base case to pull from memory
       }//checking processor 2
       if(processor == 3)
       {
+				if(p3->find(tag, index) == true && p3->stateIn(index) != "Invalid")
+				{
+					//we have the data we are trying to read and it is valid, do nothing
+				}
+				//p0 has a valid form of the data
+				else if(p0->find(tag, index) == true && p0->stateIn(index) != "Invalid")
+				{
+					//get the state of the data
+					state = p0->stateIn(index);
 
+					if(state == "Exclusive")
+					{
+						p0->exclusivetoShared(index);
+						//increment p0 shared
+						p3->invalidToShared(index);
+					}
+					if(state == "Shared")
+					{
+						//increment p0 shared
+						p3->invalidToShared(index);
+					}
+					if(state == "Modified")
+					{
+						p0->modifiedToOwner(index);
+						//incrememnt p0 shared
+						p3->invalidToShared(index);
+					}
+					if(state == "Owner")
+					{
+						//increment p0 shared
+						p3->invalidToShared(index);
+					}
+				}//end p0 look up
+				else if(p1->find(tag, index) == true && p1->stateIn(index) != "Invalid")
+				{
+					//get the state of the data
+					state = p1->stateIn(index);
+
+					if(state == "Exclusive")
+					{
+						p1->exclusivetoShared(index);
+						//increment p1 shared
+						p3->invalidToShared(index);
+					}
+					if(state == "Shared")
+					{
+						//increment p1 shared
+						p3->invalidToShared(index);
+					}
+					if(state == "Modified")
+					{
+						p1->modifiedToOwner(index);
+						//incrememnt p1 shared
+						p3->invalidToShared(index);
+					}
+					if(state == "Owner")
+					{
+						//increment p1 shared
+						p3->invalidToShared(index);
+					}
+				}//end p1 look up
+				else if(p2->find(tag, index) == true && p2->stateIn(index) != "Invalid")
+				{
+					//get the state of the data
+					state = p2->stateIn(index);
+
+					if(state == "Exclusive")
+					{
+						p2->exclusivetoShared(index);
+						//increment p2 shared
+						p3->invalidToShared(index);
+					}
+					if(state == "Shared")
+					{
+						//increment p2 shared
+						p3->invalidToShared(index);
+					}
+					if(state == "Modified")
+					{
+						p2->modifiedToOwner(index);
+						//incrememnt p2 shared
+						p3->invalidToShared(index);
+					}
+					if(state == "Owner")
+					{
+						//increment p2 shared
+						p3->invalidToShared(index);
+					}
+				}//end p3 look up
+				else
+				{
+					//update the tag array with the new tag and set it to the exclusive state
+					p3->invalidToExclusive(tag, index);
+				}//end base case to pull from memory
       }//checking processor 3
     }//end read
     //write
