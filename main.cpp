@@ -572,7 +572,7 @@ int main()
 					{
 						p3->incrementDirtyWriteBack();
 					}
-
+          
 					//everyone goes to invalid now
 					if(p1->stateIn(index) == "Exclusive")
 					{
@@ -626,7 +626,7 @@ int main()
 				else if(state == "Shared")
 				{
 					p0->sharedToModified(index);
-
+          
 					//invalidate everyone without sending back to DRAM
 					if(p1->stateIn(index) == "Exclusive")
 					{
