@@ -33,7 +33,6 @@ string hexToBinary(string hex)
 				case 'f': binary.append ("1111"); break;
 			}
 		}
-    cout << binary << endl;
 		return binary;
 	}
 
@@ -52,23 +51,7 @@ int getIndex(string binary)
       total = total + pow(2, calcExponent);
     }
   }
-	//cout << "total " << total << endl;
   return total;
-}
-
-string getTag(string binary)
-{
-  string tag;
-  for(int i = 0; i < 18; i++)
-  {
-    tag[i] = binary[i];
-  }
-	for(int k = 0; k < 18; k++)
-	{
-	cout << tag[k];
-	}
-	cout  << endl;
-  return tag;
 }
 
 int main()
@@ -96,7 +79,6 @@ int main()
 		char tag[18];
 		std::size_t length = bin.copy(tag,18,0);
 		tag[length]='\0';
-		cout << tag << endl;
     /*
     READS
     check if the processor has the data if it does do nothing
@@ -572,7 +554,7 @@ int main()
 					{
 						p3->incrementDirtyWriteBack();
 					}
-          
+
 					//everyone goes to invalid now
 					if(p1->stateIn(index) == "Exclusive")
 					{
@@ -626,7 +608,7 @@ int main()
 				else if(state == "Shared")
 				{
 					p0->sharedToModified(index);
-          
+
 					//invalidate everyone without sending back to DRAM
 					if(p1->stateIn(index) == "Exclusive")
 					{
