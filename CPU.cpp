@@ -114,6 +114,10 @@ void CPU::invalidToModified(int index)
 
 void CPU::invalidToExclusive(string newTag, int index)
 {
+  if(states[index] != "Invalid")
+  {
+    dirtyWrite++;
+  }
   states[index] = "Exclusive";
   tag[index] = newTag;
 }
