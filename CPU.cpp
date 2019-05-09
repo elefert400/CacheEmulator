@@ -17,6 +17,9 @@ CPU::CPU()
   e = 0;
   s = 0;
   i = 0;
+  //need to make function to go through state array at end and keep track of how many are present of each state
+
+
 
   invalidM = 0;
   invalidO = 0;
@@ -164,26 +167,66 @@ int CPU::getDirtyWrite()
 
 int CPU::getm()
 {
+  int m = 0;
+  for(int i = 0; i < 512; i++)
+  {
+    if(states[i] == "Modified")
+    {
+      m++;
+    }
+  }
   return m;
 }
 
 int CPU::geti()
 {
+  int i = 0;
+  for(int j = 0; j < 512; j++)
+  {
+    if(states[j] == "Invalid")
+    {
+      i++;
+    }
+  }
   return i;
 }
 
 int CPU::geto()
 {
+  int o = 0;
+  for(int i = 0; i < 512; i++)
+  {
+    if(states[i] == "Owner")
+    {
+      o++;
+    }
+  }
   return o;
 }
 
 int CPU::gets()
 {
+  int s = 0;
+  for(int i = 0; i < 512; i++)
+  {
+    if(states[i] == "Shared")
+    {
+      s++;
+    }
+  }
   return s;
 }
 
 int CPU::gete()
 {
+  int e = 0;
+  for(int i = 0; i < 512; i++)
+  {
+    if(states[i] == "Exclusive")
+    {
+      e++;
+    }
+  }
   return e;
 }
 
@@ -225,4 +268,9 @@ void CPU::incrementP2()
 void CPU::incrementP3()
 {
   p3transfers++;
+}
+
+void CPU::incrementDirtyWriteBack()
+{
+  dirtyWrite++;
 }
