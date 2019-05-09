@@ -1,0 +1,4 @@
+Language: C++ 
+makefile is included
+To run the program, use the make command in linux terminal to compile the program. 
+Then type ./Project to run the program and get the statistics output.
