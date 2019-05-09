@@ -554,19 +554,759 @@ int main()
     {
       if(processor == 0)
       {
+				state = p0->stateIn(index);
+				if(state == "Invalid")
+				{
+					p0->invalidToModified(index);
 
+					//checking to see if anyone does a dirty write back
+					if(p1->stateIn(index) == "Owner" || p1->stateIn(index) == "Modified")
+					{
+						p1->incrementDirtyWriteBack();
+					}
+					if(p2->stateIn(index) == "Owner" || p2->stateIn(index) == "Modified")
+					{
+						p2->incrementDirtyWriteBack();
+					}
+					if(p3->stateIn(index) == "Owner" || p3->stateIn(index) == "Modified")
+					{
+						p3->incrementDirtyWriteBack();
+					}
+
+					//everyone goes to invalid now
+					if(p1->stateIn(index) == "Exclusive")
+					{
+						p1->exclusiveToInvalid(index);
+					}
+					if(p1->stateIn(index) == "Modified")
+					{
+						p1->modifiedToInvalid(index);
+					}
+					if(p1->stateIn(index) == "Owner")
+					{
+						p1->ownerToModifed(index);
+					}
+					if(p1->stateIn(index) == "Shared")
+					{
+						p1->sharedToInvalid(index);
+					}
+					if(p2->stateIn(index) == "Exclusive")
+					{
+						p2->exclusiveToInvalid(index);
+					}
+					if(p2->stateIn(index) == "Modified")
+					{
+						p2->modifiedToInvalid(index);
+					}
+					if(p2->stateIn(index) == "Owner")
+					{
+						p2->ownerToModifed(index);
+					}
+					if(p2->stateIn(index) == "Shared")
+					{
+						p2->sharedToInvalid(index);
+					}
+					if(p3->stateIn(index) == "Exclusive")
+					{
+						p3->exclusiveToInvalid(index);
+					}
+					if(p3->stateIn(index) == "Modified")
+					{
+						p3->modifiedToInvalid(index);
+					}
+					if(p3->stateIn(index) == "Owner")
+					{
+						p3->ownerToModifed(index);
+					}
+					if(p3->stateIn(index) == "Shared")
+					{
+						p3->sharedToInvalid(index);
+					}
+				}
+				else if(state == "Shared")
+				{
+					p0->sharedToModified(index);
+
+					//invalidate everyone without sending back to DRAM
+					if(p1->stateIn(index) == "Exclusive")
+					{
+						p1->exclusiveToInvalid(index);
+					}
+					if(p1->stateIn(index) == "Modified")
+					{
+						p1->modifiedToInvalid(index);
+					}
+					if(p1->stateIn(index) == "Owner")
+					{
+						p1->ownerToModifed(index);
+					}
+					if(p1->stateIn(index) == "Shared")
+					{
+						p1->sharedToInvalid(index);
+					}
+					if(p2->stateIn(index) == "Exclusive")
+					{
+						p2->exclusiveToInvalid(index);
+					}
+					if(p2->stateIn(index) == "Modified")
+					{
+						p2->modifiedToInvalid(index);
+					}
+					if(p2->stateIn(index) == "Owner")
+					{
+						p2->ownerToModifed(index);
+					}
+					if(p2->stateIn(index) == "Shared")
+					{
+						p2->sharedToInvalid(index);
+					}
+					if(p3->stateIn(index) == "Exclusive")
+					{
+						p3->exclusiveToInvalid(index);
+					}
+					if(p3->stateIn(index) == "Modified")
+					{
+						p3->modifiedToInvalid(index);
+					}
+					if(p3->stateIn(index) == "Owner")
+					{
+						p3->ownerToModifed(index);
+					}
+					if(p3->stateIn(index) == "Shared")
+					{
+						p3->sharedToInvalid(index);
+					}
+				}
+				else if(state == "Owner")
+				{
+					p0->ownerToModifed(index);
+
+					//just invalidating everyone
+					if(p1->stateIn(index) == "Exclusive")
+					{
+						p1->exclusiveToInvalid(index);
+					}
+					if(p1->stateIn(index) == "Modified")
+					{
+						p1->modifiedToInvalid(index);
+					}
+					if(p1->stateIn(index) == "Owner")
+					{
+						p1->ownerToModifed(index);
+					}
+					if(p1->stateIn(index) == "Shared")
+					{
+						p1->sharedToInvalid(index);
+					}
+					if(p2->stateIn(index) == "Exclusive")
+					{
+						p2->exclusiveToInvalid(index);
+					}
+					if(p2->stateIn(index) == "Modified")
+					{
+						p2->modifiedToInvalid(index);
+					}
+					if(p2->stateIn(index) == "Owner")
+					{
+						p2->ownerToModifed(index);
+					}
+					if(p2->stateIn(index) == "Shared")
+					{
+						p2->sharedToInvalid(index);
+					}
+					if(p3->stateIn(index) == "Exclusive")
+					{
+						p3->exclusiveToInvalid(index);
+					}
+					if(p3->stateIn(index) == "Modified")
+					{
+						p3->modifiedToInvalid(index);
+					}
+					if(p3->stateIn(index) == "Owner")
+					{
+						p3->ownerToModifed(index);
+					}
+					if(p3->stateIn(index) == "Shared")
+					{
+						p3->sharedToInvalid(index);
+					}
+				}
+				else if(state == "Modified")
+				{
+					//don't need to do anything because we are modifing data we already have to latest data of
+				}
+				else if(state == "Exclusive")
+				{
+					//don't need to do anything because we are the only ones with the data
+					p0->exclusiveToModified(index);
+				}
       }//checking processor 0
       if(processor == 1)
       {
+				state = p1->stateIn(index);
+				if(state == "Invalid")
+				{
+					p1->invalidToModified(index);
 
+					//checking to see if anyone does a dirty write back
+					if(p0->stateIn(index) == "Owner" || p0->stateIn(index) == "Modified")
+					{
+						p0->incrementDirtyWriteBack();
+					}
+					if(p2->stateIn(index) == "Owner" || p2->stateIn(index) == "Modified")
+					{
+						p2->incrementDirtyWriteBack();
+					}
+					if(p3->stateIn(index) == "Owner" || p3->stateIn(index) == "Modified")
+					{
+						p3->incrementDirtyWriteBack();
+					}
+
+					//everyone goes to invalid now
+					if(p0->stateIn(index) == "Exclusive")
+					{
+						p0->exclusiveToInvalid(index);
+					}
+					if(p0->stateIn(index) == "Modified")
+					{
+						p0->modifiedToInvalid(index);
+					}
+					if(p0->stateIn(index) == "Owner")
+					{
+						p0->ownerToModifed(index);
+					}
+					if(p0->stateIn(index) == "Shared")
+					{
+						p0->sharedToInvalid(index);
+					}
+					if(p2->stateIn(index) == "Exclusive")
+					{
+						p2->exclusiveToInvalid(index);
+					}
+					if(p2->stateIn(index) == "Modified")
+					{
+						p2->modifiedToInvalid(index);
+					}
+					if(p2->stateIn(index) == "Owner")
+					{
+						p2->ownerToModifed(index);
+					}
+					if(p2->stateIn(index) == "Shared")
+					{
+						p2->sharedToInvalid(index);
+					}
+					if(p3->stateIn(index) == "Exclusive")
+					{
+						p3->exclusiveToInvalid(index);
+					}
+					if(p3->stateIn(index) == "Modified")
+					{
+						p3->modifiedToInvalid(index);
+					}
+					if(p3->stateIn(index) == "Owner")
+					{
+						p3->ownerToModifed(index);
+					}
+					if(p3->stateIn(index) == "Shared")
+					{
+						p3->sharedToInvalid(index);
+					}
+				}
+				else if(state == "Shared")
+				{
+					p1->sharedToModified(index);
+
+					//invalidate everyone without sending back to DRAM
+					if(p0->stateIn(index) == "Exclusive")
+					{
+						p0->exclusiveToInvalid(index);
+					}
+					if(p0->stateIn(index) == "Modified")
+					{
+						p0->modifiedToInvalid(index);
+					}
+					if(p0->stateIn(index) == "Owner")
+					{
+						p0->ownerToModifed(index);
+					}
+					if(p0->stateIn(index) == "Shared")
+					{
+						p0->sharedToInvalid(index);
+					}
+					if(p2->stateIn(index) == "Exclusive")
+					{
+						p2->exclusiveToInvalid(index);
+					}
+					if(p2->stateIn(index) == "Modified")
+					{
+						p2->modifiedToInvalid(index);
+					}
+					if(p2->stateIn(index) == "Owner")
+					{
+						p2->ownerToModifed(index);
+					}
+					if(p2->stateIn(index) == "Shared")
+					{
+						p2->sharedToInvalid(index);
+					}
+					if(p3->stateIn(index) == "Exclusive")
+					{
+						p3->exclusiveToInvalid(index);
+					}
+					if(p3->stateIn(index) == "Modified")
+					{
+						p3->modifiedToInvalid(index);
+					}
+					if(p3->stateIn(index) == "Owner")
+					{
+						p3->ownerToModifed(index);
+					}
+					if(p3->stateIn(index) == "Shared")
+					{
+						p3->sharedToInvalid(index);
+					}
+				}
+				else if(state == "Owner")
+				{
+					p1->ownerToModifed(index);
+
+					//just invalidating everyone
+					if(p0->stateIn(index) == "Exclusive")
+					{
+						p0->exclusiveToInvalid(index);
+					}
+					if(p0->stateIn(index) == "Modified")
+					{
+						p0->modifiedToInvalid(index);
+					}
+					if(p0->stateIn(index) == "Owner")
+					{
+						p0->ownerToModifed(index);
+					}
+					if(p0->stateIn(index) == "Shared")
+					{
+						p0->sharedToInvalid(index);
+					}
+					if(p2->stateIn(index) == "Exclusive")
+					{
+						p2->exclusiveToInvalid(index);
+					}
+					if(p2->stateIn(index) == "Modified")
+					{
+						p2->modifiedToInvalid(index);
+					}
+					if(p2->stateIn(index) == "Owner")
+					{
+						p2->ownerToModifed(index);
+					}
+					if(p2->stateIn(index) == "Shared")
+					{
+						p2->sharedToInvalid(index);
+					}
+					if(p3->stateIn(index) == "Exclusive")
+					{
+						p3->exclusiveToInvalid(index);
+					}
+					if(p3->stateIn(index) == "Modified")
+					{
+						p3->modifiedToInvalid(index);
+					}
+					if(p3->stateIn(index) == "Owner")
+					{
+						p3->ownerToModifed(index);
+					}
+					if(p3->stateIn(index) == "Shared")
+					{
+						p3->sharedToInvalid(index);
+					}
+				}
+				else if(state == "Modified")
+				{
+					//don't need to do anything because we are modifing data we already have to latest data of
+				}
+				else if(state == "Exclusive")
+				{
+					//don't need to do anything because we are the only ones with the data
+					p1->exclusiveToModified(index);
+				}
       }//checking processor 1
       if(processor == 2)
       {
+				state = p2->stateIn(index);
+				if(state == "Invalid")
+				{
+					p2->invalidToModified(index);
 
+					//checking to see if anyone does a dirty write back
+					if(p1->stateIn(index) == "Owner" || p1->stateIn(index) == "Modified")
+					{
+						p1->incrementDirtyWriteBack();
+					}
+					if(p0->stateIn(index) == "Owner" || p2->stateIn(index) == "Modified")
+					{
+						p0->incrementDirtyWriteBack();
+					}
+					if(p3->stateIn(index) == "Owner" || p3->stateIn(index) == "Modified")
+					{
+						p3->incrementDirtyWriteBack();
+					}
+
+					//everyone goes to invalid now
+					if(p1->stateIn(index) == "Exclusive")
+					{
+						p1->exclusiveToInvalid(index);
+					}
+					if(p1->stateIn(index) == "Modified")
+					{
+						p1->modifiedToInvalid(index);
+					}
+					if(p1->stateIn(index) == "Owner")
+					{
+						p1->ownerToModifed(index);
+					}
+					if(p1->stateIn(index) == "Shared")
+					{
+						p1->sharedToInvalid(index);
+					}
+					if(p0->stateIn(index) == "Exclusive")
+					{
+						p0->exclusiveToInvalid(index);
+					}
+					if(p0->stateIn(index) == "Modified")
+					{
+						p0->modifiedToInvalid(index);
+					}
+					if(p0->stateIn(index) == "Owner")
+					{
+						p0->ownerToModifed(index);
+					}
+					if(p0->stateIn(index) == "Shared")
+					{
+						p0->sharedToInvalid(index);
+					}
+					if(p3->stateIn(index) == "Exclusive")
+					{
+						p3->exclusiveToInvalid(index);
+					}
+					if(p3->stateIn(index) == "Modified")
+					{
+						p3->modifiedToInvalid(index);
+					}
+					if(p3->stateIn(index) == "Owner")
+					{
+						p3->ownerToModifed(index);
+					}
+					if(p3->stateIn(index) == "Shared")
+					{
+						p3->sharedToInvalid(index);
+					}
+				}
+				else if(state == "Shared")
+				{
+					p2->sharedToModified(index);
+
+					//invalidate everyone without sending back to DRAM
+					if(p1->stateIn(index) == "Exclusive")
+					{
+						p1->exclusiveToInvalid(index);
+					}
+					if(p1->stateIn(index) == "Modified")
+					{
+						p1->modifiedToInvalid(index);
+					}
+					if(p1->stateIn(index) == "Owner")
+					{
+						p1->ownerToModifed(index);
+					}
+					if(p1->stateIn(index) == "Shared")
+					{
+						p1->sharedToInvalid(index);
+					}
+					if(p0->stateIn(index) == "Exclusive")
+					{
+						p0->exclusiveToInvalid(index);
+					}
+					if(p0->stateIn(index) == "Modified")
+					{
+						p0->modifiedToInvalid(index);
+					}
+					if(p0->stateIn(index) == "Owner")
+					{
+						p0->ownerToModifed(index);
+					}
+					if(p0->stateIn(index) == "Shared")
+					{
+						p0->sharedToInvalid(index);
+					}
+					if(p3->stateIn(index) == "Exclusive")
+					{
+						p3->exclusiveToInvalid(index);
+					}
+					if(p3->stateIn(index) == "Modified")
+					{
+						p3->modifiedToInvalid(index);
+					}
+					if(p3->stateIn(index) == "Owner")
+					{
+						p3->ownerToModifed(index);
+					}
+					if(p3->stateIn(index) == "Shared")
+					{
+						p3->sharedToInvalid(index);
+					}
+				}
+				else if(state == "Owner")
+				{
+					p2->ownerToModifed(index);
+
+					//just invalidating everyone
+					if(p1->stateIn(index) == "Exclusive")
+					{
+						p1->exclusiveToInvalid(index);
+					}
+					if(p1->stateIn(index) == "Modified")
+					{
+						p1->modifiedToInvalid(index);
+					}
+					if(p1->stateIn(index) == "Owner")
+					{
+						p1->ownerToModifed(index);
+					}
+					if(p1->stateIn(index) == "Shared")
+					{
+						p1->sharedToInvalid(index);
+					}
+					if(p0->stateIn(index) == "Exclusive")
+					{
+						p0->exclusiveToInvalid(index);
+					}
+					if(p0->stateIn(index) == "Modified")
+					{
+						p0->modifiedToInvalid(index);
+					}
+					if(p0->stateIn(index) == "Owner")
+					{
+						p0->ownerToModifed(index);
+					}
+					if(p0->stateIn(index) == "Shared")
+					{
+						p0->sharedToInvalid(index);
+					}
+					if(p3->stateIn(index) == "Exclusive")
+					{
+						p3->exclusiveToInvalid(index);
+					}
+					if(p3->stateIn(index) == "Modified")
+					{
+						p3->modifiedToInvalid(index);
+					}
+					if(p3->stateIn(index) == "Owner")
+					{
+						p3->ownerToModifed(index);
+					}
+					if(p3->stateIn(index) == "Shared")
+					{
+						p3->sharedToInvalid(index);
+					}
+				}
+				else if(state == "Modified")
+				{
+					//don't need to do anything because we are modifing data we already have to latest data of
+				}
+				else if(state == "Exclusive")
+				{
+					//don't need to do anything because we are the only ones with the data
+					p2->exclusiveToModified(index);
+				}
       }//checking processor 2
       if(processor == 3)
       {
+				state = p3->stateIn(index);
+				if(state == "Invalid")
+				{
+					p3->invalidToModified(index);
 
+					//checking to see if anyone does a dirty write back
+					if(p1->stateIn(index) == "Owner" || p1->stateIn(index) == "Modified")
+					{
+						p1->incrementDirtyWriteBack();
+					}
+					if(p2->stateIn(index) == "Owner" || p2->stateIn(index) == "Modified")
+					{
+						p2->incrementDirtyWriteBack();
+					}
+					if(p0->stateIn(index) == "Owner" || p3->stateIn(index) == "Modified")
+					{
+						p0->incrementDirtyWriteBack();
+					}
+
+					//everyone goes to invalid now
+					if(p1->stateIn(index) == "Exclusive")
+					{
+						p1->exclusiveToInvalid(index);
+					}
+					if(p1->stateIn(index) == "Modified")
+					{
+						p1->modifiedToInvalid(index);
+					}
+					if(p1->stateIn(index) == "Owner")
+					{
+						p1->ownerToModifed(index);
+					}
+					if(p1->stateIn(index) == "Shared")
+					{
+						p1->sharedToInvalid(index);
+					}
+					if(p2->stateIn(index) == "Exclusive")
+					{
+						p2->exclusiveToInvalid(index);
+					}
+					if(p2->stateIn(index) == "Modified")
+					{
+						p2->modifiedToInvalid(index);
+					}
+					if(p2->stateIn(index) == "Owner")
+					{
+						p2->ownerToModifed(index);
+					}
+					if(p2->stateIn(index) == "Shared")
+					{
+						p2->sharedToInvalid(index);
+					}
+					if(p0->stateIn(index) == "Exclusive")
+					{
+						p0->exclusiveToInvalid(index);
+					}
+					if(p0->stateIn(index) == "Modified")
+					{
+						p0->modifiedToInvalid(index);
+					}
+					if(p0->stateIn(index) == "Owner")
+					{
+						p0->ownerToModifed(index);
+					}
+					if(p0->stateIn(index) == "Shared")
+					{
+						p0->sharedToInvalid(index);
+					}
+				}
+				else if(state == "Shared")
+				{
+					p3->sharedToModified(index);
+
+					//invalidate everyone without sending back to DRAM
+					if(p1->stateIn(index) == "Exclusive")
+					{
+						p1->exclusiveToInvalid(index);
+					}
+					if(p1->stateIn(index) == "Modified")
+					{
+						p1->modifiedToInvalid(index);
+					}
+					if(p1->stateIn(index) == "Owner")
+					{
+						p1->ownerToModifed(index);
+					}
+					if(p1->stateIn(index) == "Shared")
+					{
+						p1->sharedToInvalid(index);
+					}
+					if(p2->stateIn(index) == "Exclusive")
+					{
+						p2->exclusiveToInvalid(index);
+					}
+					if(p2->stateIn(index) == "Modified")
+					{
+						p2->modifiedToInvalid(index);
+					}
+					if(p2->stateIn(index) == "Owner")
+					{
+						p2->ownerToModifed(index);
+					}
+					if(p2->stateIn(index) == "Shared")
+					{
+						p2->sharedToInvalid(index);
+					}
+					if(p0->stateIn(index) == "Exclusive")
+					{
+						p0->exclusiveToInvalid(index);
+					}
+					if(p0->stateIn(index) == "Modified")
+					{
+						p0->modifiedToInvalid(index);
+					}
+					if(p0->stateIn(index) == "Owner")
+					{
+						p0->ownerToModifed(index);
+					}
+					if(p0->stateIn(index) == "Shared")
+					{
+						p0->sharedToInvalid(index);
+					}
+				}
+				else if(state == "Owner")
+				{
+					p3->ownerToModifed(index);
+
+					//just invalidating everyone
+					if(p1->stateIn(index) == "Exclusive")
+					{
+						p1->exclusiveToInvalid(index);
+					}
+					if(p1->stateIn(index) == "Modified")
+					{
+						p1->modifiedToInvalid(index);
+					}
+					if(p1->stateIn(index) == "Owner")
+					{
+						p1->ownerToModifed(index);
+					}
+					if(p1->stateIn(index) == "Shared")
+					{
+						p1->sharedToInvalid(index);
+					}
+					if(p2->stateIn(index) == "Exclusive")
+					{
+						p2->exclusiveToInvalid(index);
+					}
+					if(p2->stateIn(index) == "Modified")
+					{
+						p2->modifiedToInvalid(index);
+					}
+					if(p2->stateIn(index) == "Owner")
+					{
+						p2->ownerToModifed(index);
+					}
+					if(p2->stateIn(index) == "Shared")
+					{
+						p2->sharedToInvalid(index);
+					}
+					if(p0->stateIn(index) == "Exclusive")
+					{
+						p0->exclusiveToInvalid(index);
+					}
+					if(p0->stateIn(index) == "Modified")
+					{
+						p0->modifiedToInvalid(index);
+					}
+					if(p0->stateIn(index) == "Owner")
+					{
+						p0->ownerToModifed(index);
+					}
+					if(p0->stateIn(index) == "Shared")
+					{
+						p0->sharedToInvalid(index);
+					}
+				}
+				else if(state == "Modified")
+				{
+					//don't need to do anything because we are modifing data we already have to latest data of
+				}
+				else if(state == "Exclusive")
+				{
+					//don't need to do anything because we are the only ones with the data
+					p3->exclusiveToModified(index);
+				}
       }//checking processor 3
     }//end write
   }//end main loop
