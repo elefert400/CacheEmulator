@@ -2,6 +2,7 @@
 
 using namespace std;
 
+//initializing variables and arrays
 CPU::CPU()
 {
   p0transfers = 0;
@@ -17,9 +18,14 @@ CPU::CPU()
   s = 0;
   i = 0;
 
+  invalidM = 0;
+  invalidO = 0;
+  invalidE = 0;
+  invalidS = 0;
+
   for(int i = 0; i < arraySize; i++)
   {
-    states[i] = "I";
+    states[i] = "Invalid";
     tag[i] = "";
   }
 }
@@ -31,87 +37,98 @@ CPU::~CPU()
 
 void CPU::exclusiveToModified(int index)
 {
-
+  states[index] = "Modified";
 }
 
 void CPU::exclusiveToInvalid(int index)
 {
-
+  states[index] = "Invalid";
+  invalidE++;
 }
 
 void CPU::exclusiveToShared(int index)
 {
-
+  states[index] = "Shared";
 }
 
 void CPU::exclusiveToExclusve(int index)
 {
-
+  states[index] = "Exclusive";
 }
 
 void CPU::modifiedToOwner(int index)
 {
-
+  states[index] = "Owner";
 }
 
 void CPU::modifiedToInvalid(int index)
 {
-
+  states[index] = "Invalid";
+  invalidM++;
 }
-
+//
 void CPU::modifiedToModified(int index)
 {
-
+  states[index] = "Modified";
 }
 
 void CPU::ownerToOwner(int index)
 {
-
+  states[index] = "Owner";
 }
 
 void CPU::ownerToModifed(int index)
 {
-
+  states[index] = "Modified";
 }
 
 void CPU::ownerToInvalid(int index)
 {
-
+  states[index] = "Invalid";
+  invalidO++;
 }
 
 void CPU::sharedToShared(int index)
 {
-
+  states[index] = "Shared";
 }
 
 void CPU::sharedToModified(int index)
 {
-
+  states[index] = "Modified";
 }
 
 void CPU::sharedToInvalid(int index)
 {
-
+  states[index] = "Invalid";
+  invalidS++;
 }
 
 void CPU::invalidToModified(int index)
 {
-
+  states[index] = "Modified";
 }
 
 void CPU::invalidToExclusive(int index)
 {
-
+  states[index] = "Exclusive";
 }
 
 void CPU::invalidToShared(int index)
 {
-
+  states[index] = "Shared";
 }
 
-bool CPU::find(string findMe)
+bool CPU::find(string passedTag, int index)
 {
-
+  if(tag[index] == passedTag)
+  {
+    return true;
+  }
+  else
+  {
+    return false;
+  }
 }
 
 string CPU::stateIn(int index)
@@ -167,4 +184,44 @@ int CPU::gets()
 int CPU::gete()
 {
   return e;
+}
+
+int CPU::getInvalidM()
+{
+  return invalidM;
+}
+
+int CPU::getInvalidO()
+{
+  return invalidO;
+}
+
+int CPU::getInvalidE()
+{
+  return invalidE;
+}
+
+int CPU::getInvalidS()
+{
+  return invalidS;
+}
+
+void CPU::incrementP0()
+{
+  p0transfers++;
+}
+
+void CPU::incrementP1()
+{
+  p1transfers++;
+}
+
+void CPU::incrementP2()
+{
+  p2transfers++;
+}
+
+void CPU::incrementP3()
+{
+  p3transfers++;
 }

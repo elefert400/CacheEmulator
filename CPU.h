@@ -22,6 +22,11 @@ private:
   int s;
   int i;
 
+  int invalidM;
+  int invalidO;
+  int invalidE;
+  int invalidS;
+
   const static int arraySize = 512;
   string states[arraySize];
   string tag[arraySize];
@@ -30,6 +35,7 @@ public:
   //constructor destructor
   CPU();
   ~CPU();
+
   //state change functions
   void exclusiveToModified(int index);
   void exclusiveToInvalid(int index);
@@ -49,14 +55,18 @@ public:
   void sharedToInvalid(int index);
 
   void invalidToModified(int index);
-  void invalidToExclusive(int index);
+  void invalidToExclusive(string newTag, int index);
   void invalidToShared(int index);
 
   //functions to help get info from the CPU
-  bool find(string findMe);
+  bool find(string passedTag, int index);
   string stateIn(int index);
-  void addToArray(string newString);
-  int findIndex(string findMe);
+
+  //functions for incrementing the variables
+  void incrementP0();
+  void incrementP1();
+  void incrementP2();
+  void incrementP3();
 
   //gets the final variables for output
   int getp0transfers();
@@ -69,5 +79,9 @@ public:
   int gete();
   int geto();
   int gets();
+  int getInvalidM();
+  int getInvalidO();
+  int getInvalidE();
+  int getInvalidS();
 };
 #endif
