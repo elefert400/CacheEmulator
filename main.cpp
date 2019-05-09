@@ -113,12 +113,12 @@ int main()
 						p1->incrementP0();
 						p0->invalidToShared(index);
 					}
-					if(state == "Shared")
-					{
-						//increment p1 shared
-						p1->incrementP0();
-						p0->invalidToShared(index);
-					}
+					// if(state == "Shared")
+					// {
+					// 	//increment p1 shared
+					// 	p1->incrementP0();
+					// 	p0->invalidToShared(index);
+					// }
 					if(state == "Modified")
 					{
 						p1->modifiedToOwner(index);
@@ -145,12 +145,12 @@ int main()
 						p2->incrementP0();
 						p0->invalidToShared(index);
 					}
-					if(state == "Shared")
-					{
-						//increment p2 shared
-						p2->incrementP0();
-						p0->invalidToShared(index);
-					}
+					// if(state == "Shared")
+					// {
+					// 	//increment p2 shared
+					// 	p2->incrementP0();
+					// 	p0->invalidToShared(index);
+					// }
 					if(state == "Modified")
 					{
 						p2->modifiedToOwner(index);
@@ -177,12 +177,12 @@ int main()
 						p3->incrementP0();
 						p0->invalidToShared(index);
 					}
-					if(state == "Shared")
-					{
-						//increment p3 shared
-						p3->incrementP0();
-						p0->invalidToShared(index);
-					}
+					// if(state == "Shared")
+					// {
+					// 	//increment p3 shared
+					// 	p3->incrementP0();
+					// 	p0->invalidToShared(index);
+					// }
 					if(state == "Modified")
 					{
 						p3->modifiedToOwner(index);
@@ -222,12 +222,12 @@ int main()
 						p0->incrementP1();
 						p1->invalidToShared(index);
 					}
-					if(state == "Shared")
-					{
-						//increment p1 shared
-						p0->incrementP1();
-						p1->invalidToShared(index);
-					}
+					// if(state == "Shared")
+					// {
+					// 	//increment p1 shared
+					// 	p0->incrementP1();
+					// 	p1->invalidToShared(index);
+					// }
 					if(state == "Modified")
 					{
 						p0->modifiedToOwner(index);
@@ -254,12 +254,12 @@ int main()
 						p2->incrementP1();
 						p1->invalidToShared(index);
 					}
-					if(state == "Shared")
-					{
-						//increment p2 shared
-						p2->incrementP1();
-						p1->invalidToShared(index);
-					}
+					// if(state == "Shared")
+					// {
+					// 	//increment p2 shared
+					// 	p2->incrementP1();
+					// 	p1->invalidToShared(index);
+					// }
 					if(state == "Modified")
 					{
 						p2->modifiedToOwner(index);
@@ -286,12 +286,12 @@ int main()
 						p3->incrementP1();
 						p1->invalidToShared(index);
 					}
-					if(state == "Shared")
-					{
-						//increment p3 shared
-						p3->incrementP1();
-						p1->invalidToShared(index);
-					}
+					// if(state == "Shared")
+					// {
+					// 	//increment p3 shared
+					// 	p3->incrementP1();
+					// 	p1->invalidToShared(index);
+					// }
 					if(state == "Modified")
 					{
 						p3->modifiedToOwner(index);
@@ -331,12 +331,12 @@ int main()
 						p0->incrementP2();
 						p2->invalidToShared(index);
 					}
-					if(state == "Shared")
-					{
-						//increment p0 shared
-						p0->incrementP2();
-						p2->invalidToShared(index);
-					}
+					// if(state == "Shared")
+					// {
+					// 	//increment p0 shared
+					// 	p0->incrementP2();
+					// 	p2->invalidToShared(index);
+					// }
 					if(state == "Modified")
 					{
 						p0->modifiedToOwner(index);
@@ -363,12 +363,12 @@ int main()
 						p1->incrementP2();
 						p2->invalidToShared(index);
 					}
-					if(state == "Shared")
-					{
-						//increment p1 shared
-						p1->incrementP2();
-						p2->invalidToShared(index);
-					}
+					// if(state == "Shared")
+					// {
+					// 	//increment p1 shared
+					// 	p1->incrementP2();
+					// 	p2->invalidToShared(index);
+					// }
 					if(state == "Modified")
 					{
 						p1->modifiedToOwner(index);
@@ -395,12 +395,12 @@ int main()
 						p3->incrementP2();
 						p2->invalidToShared(index);
 					}
-					if(state == "Shared")
-					{
-						//increment p3 shared
-						p3->incrementP2();
-						p2->invalidToShared(index);
-					}
+					// if(state == "Shared")
+					// {
+					// 	//increment p3 shared
+					// 	p3->incrementP2();
+					// 	p2->invalidToShared(index);
+					// }
 					if(state == "Modified")
 					{
 						p3->modifiedToOwner(index);
@@ -440,12 +440,12 @@ int main()
 						p0->incrementP3();
 						p3->invalidToShared(index);
 					}
-					if(state == "Shared")
-					{
-						//increment p0 shared
-						p0->incrementP3();
-						p3->invalidToShared(index);
-					}
+					// if(state == "Shared")
+					// {
+					// 	//increment p0 shared
+					// 	p0->incrementP3();
+					// 	p3->invalidToShared(index);
+					// }
 					if(state == "Modified")
 					{
 						p0->modifiedToOwner(index);
@@ -472,12 +472,12 @@ int main()
 						p1->incrementP3();
 						p3->invalidToShared(index);
 					}
-					if(state == "Shared")
-					{
-						//increment p1 shared
-						p1->incrementP3();
-						p3->invalidToShared(index);
-					}
+					// if(state == "Shared")
+					// {
+					// 	//increment p1 shared
+					// 	p1->incrementP3();
+					// 	p3->invalidToShared(index);
+					// }
 					if(state == "Modified")
 					{
 						p1->modifiedToOwner(index);
@@ -504,12 +504,12 @@ int main()
 						p2->incrementP3();
 						p3->invalidToShared(index);
 					}
-					if(state == "Shared")
-					{
-						//increment p2 shared
-						p2->incrementP3();
-						p3->invalidToShared(index);
-					}
+					// if(state == "Shared")
+					// {
+					// 	//increment p2 shared
+					// 	p2->incrementP3();
+					// 	p3->invalidToShared(index);
+					// }
 					if(state == "Modified")
 					{
 						p2->modifiedToOwner(index);
