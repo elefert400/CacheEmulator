@@ -202,6 +202,7 @@ int CPU::getm()
   {
     if(states[i] == "Modified")
     {
+      dirtyWrite++;
       m++;
     }
   }
@@ -230,6 +231,7 @@ int CPU::geto()
   {
     if(states[i] == "Owner")
     {
+      dirtyWrite++;
       o++;
     }
   }

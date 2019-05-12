@@ -7,7 +7,7 @@
 #include <cmath>
 #include <string>
 using namespace std;
-//tag 18 bits index 9 bits and the offset has 5
+//function to convert hex to a binary string
 string hexToBinary(string hex)
 	{
 		string binary = "";
@@ -35,7 +35,7 @@ string hexToBinary(string hex)
 		}
 		return binary;
 	}
-
+//function to get the index integar value from the binary string
 int getIndex(string binary)
 {
   string str;
@@ -69,31 +69,27 @@ int main()
   //main loop for running everything
   for(int i = 0; i < parseSize; i++)
   {
+		//loading the variables with parts from the arrays in the parser class
+		//gets the processor number, the hex, and if it is a read or write
     processor = mypars->getProcessor(i);
     rw = mypars->getReadWrite(i);
     hex = mypars->getHex(i);
 
+		//getting the information from the hex value
     bin = hexToBinary(hex);
     index = getIndex(bin);
-    //tag = getTag(bin);
 		char tag[18];
 		std::size_t length = bin.copy(tag,18,0);
 		tag[length]='\0';
-    /*
-    READS
-    check if the processor has the data if it does do nothing
-    otherwise check if other processors have it
-    if they do modify states as needed and transfer data
-    else read from memory
-    */
-    /*
-    WRITES
-    update all other processors to invalidate their copies if it exists
-    ?? write back to memory
-    */
-    //read
+		if(index > 512)
+		{
+			cout << "Index Error" << endl;
+		}
+
+    //checks if we are doing a read from a piece of data
     if(rw == 0)
     {
+			//if statements to check which processor is doing a read
       if(processor == 0)
       {
 				if(p0->find(tag, index) == true && p0->stateIn(index) != "Invalid")
@@ -105,7 +101,7 @@ int main()
 				{
 					//get the state of the data
 					state = p1->stateIn(index);
-
+					//if statements to check what we are doing based on the state of that data in our cache
 					if(state == "Exclusive")
 					{
 						p1->exclusiveToShared(index);
@@ -113,12 +109,6 @@ int main()
 						p1->incrementP0();
 						p0->invalidToShared(index);
 					}
-					// if(state == "Shared")
-					// {
-					// 	//increment p1 shared
-					// 	p1->incrementP0();
-					// 	p0->invalidToShared(index);
-					// }
 					if(state == "Modified")
 					{
 						p1->modifiedToOwner(index);
@@ -145,12 +135,6 @@ int main()
 						p2->incrementP0();
 						p0->invalidToShared(index);
 					}
-					// if(state == "Shared")
-					// {
-					// 	//increment p2 shared
-					// 	p2->incrementP0();
-					// 	p0->invalidToShared(index);
-					// }
 					if(state == "Modified")
 					{
 						p2->modifiedToOwner(index);
@@ -177,12 +161,6 @@ int main()
 						p3->incrementP0();
 						p0->invalidToShared(index);
 					}
-					// if(state == "Shared")
-					// {
-					// 	//increment p3 shared
-					// 	p3->incrementP0();
-					// 	p0->invalidToShared(index);
-					// }
 					if(state == "Modified")
 					{
 						p3->modifiedToOwner(index);
@@ -222,12 +200,6 @@ int main()
 						p0->incrementP1();
 						p1->invalidToShared(index);
 					}
-					// if(state == "Shared")
-					// {
-					// 	//increment p1 shared
-					// 	p0->incrementP1();
-					// 	p1->invalidToShared(index);
-					// }
 					if(state == "Modified")
 					{
 						p0->modifiedToOwner(index);
@@ -254,12 +226,6 @@ int main()
 						p2->incrementP1();
 						p1->invalidToShared(index);
 					}
-					// if(state == "Shared")
-					// {
-					// 	//increment p2 shared
-					// 	p2->incrementP1();
-					// 	p1->invalidToShared(index);
-					// }
 					if(state == "Modified")
 					{
 						p2->modifiedToOwner(index);
@@ -286,12 +252,6 @@ int main()
 						p3->incrementP1();
 						p1->invalidToShared(index);
 					}
-					// if(state == "Shared")
-					// {
-					// 	//increment p3 shared
-					// 	p3->incrementP1();
-					// 	p1->invalidToShared(index);
-					// }
 					if(state == "Modified")
 					{
 						p3->modifiedToOwner(index);
@@ -331,12 +291,6 @@ int main()
 						p0->incrementP2();
 						p2->invalidToShared(index);
 					}
-					// if(state == "Shared")
-					// {
-					// 	//increment p0 shared
-					// 	p0->incrementP2();
-					// 	p2->invalidToShared(index);
-					// }
 					if(state == "Modified")
 					{
 						p0->modifiedToOwner(index);
@@ -363,12 +317,6 @@ int main()
 						p1->incrementP2();
 						p2->invalidToShared(index);
 					}
-					// if(state == "Shared")
-					// {
-					// 	//increment p1 shared
-					// 	p1->incrementP2();
-					// 	p2->invalidToShared(index);
-					// }
 					if(state == "Modified")
 					{
 						p1->modifiedToOwner(index);
@@ -395,12 +343,6 @@ int main()
 						p3->incrementP2();
 						p2->invalidToShared(index);
 					}
-					// if(state == "Shared")
-					// {
-					// 	//increment p3 shared
-					// 	p3->incrementP2();
-					// 	p2->invalidToShared(index);
-					// }
 					if(state == "Modified")
 					{
 						p3->modifiedToOwner(index);
@@ -440,12 +382,6 @@ int main()
 						p0->incrementP3();
 						p3->invalidToShared(index);
 					}
-					// if(state == "Shared")
-					// {
-					// 	//increment p0 shared
-					// 	p0->incrementP3();
-					// 	p3->invalidToShared(index);
-					// }
 					if(state == "Modified")
 					{
 						p0->modifiedToOwner(index);
@@ -472,12 +408,6 @@ int main()
 						p1->incrementP3();
 						p3->invalidToShared(index);
 					}
-					// if(state == "Shared")
-					// {
-					// 	//increment p1 shared
-					// 	p1->incrementP3();
-					// 	p3->invalidToShared(index);
-					// }
 					if(state == "Modified")
 					{
 						p1->modifiedToOwner(index);
@@ -504,12 +434,6 @@ int main()
 						p2->incrementP3();
 						p3->invalidToShared(index);
 					}
-					// if(state == "Shared")
-					// {
-					// 	//increment p2 shared
-					// 	p2->incrementP3();
-					// 	p3->invalidToShared(index);
-					// }
 					if(state == "Modified")
 					{
 						p2->modifiedToOwner(index);
@@ -531,12 +455,14 @@ int main()
 				}//end base case to pull from memory
       }//checking processor 3
     }//end read
-    //write
+    //check if we are writting to a value
     if(rw == 1)
     {
+			//if statements to check which processor is doing the write
       if(processor == 0)
       {
 				state = p0->stateIn(index);
+				//if statements to check what state the data we are writting is in in our cache
 				if(state == "Invalid")
 				{
 					p0->invalidToModified(index);
