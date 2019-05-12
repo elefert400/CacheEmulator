@@ -1,3 +1,5 @@
+//Authors: Kyle Curry and Ethan Lefert
+
 #ifndef PARSER_H
 #define PARSER_H
 #include <fstream>

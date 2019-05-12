@@ -1,3 +1,5 @@
+//Authors: Kyle Curry and Ethan Lefert
+
 #include "CPU.h"
 #include "CPU.cpp"
 #include "parser.h"
@@ -7,6 +9,7 @@
 #include <cmath>
 #include <string>
 using namespace std;
+
 //function to convert hex to a binary string
 string hexToBinary(string hex)
 	{
@@ -35,6 +38,7 @@ string hexToBinary(string hex)
 		}
 		return binary;
 	}
+
 //function to get the index integar value from the binary string
 int getIndex(string binary)
 {
@@ -1219,7 +1223,6 @@ int main()
     }//end write
   }//end main loop
 
-
 	//expected output for project
 	//total number of cache to cache transfers for each processor pair
 	cout << endl << endl;
@@ -1246,8 +1249,6 @@ int main()
 	cout << "P1: m = " << p1->getm() << ", o = " << p1->geto() << ", e = " << p1->gete() << ", s = " << p1->gets() << ", i = " << p1->geti() << endl;
 	cout << "P2: m = " << p2->getm() << ", o = " << p2->geto() << ", e = " << p2->gete() << ", s = " << p2->gets() << ", i = " << p2->geti() << endl;
 	cout << "P3: m = " << p3->getm() << ", o = " << p3->geto() << ", e = " << p3->gete() << ", s = " << p3->gets() << ", i = " << p3->geti() << endl << endl;
-
-
 
   //garabage collection
   delete mypars;

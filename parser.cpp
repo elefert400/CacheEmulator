@@ -1,3 +1,5 @@
+//Authors: Kyle Curry and Ethan Lefert
+
 #include "parser.h"
 #include <fstream>
 #include <iostream>
