@@ -193,6 +193,13 @@ int CPU::getp3transfers()
 //returns the number of dirty writes
 int CPU::getDirtyWrite()
 {
+  for(int i = 0; i < 512; i++)
+  {
+    if(states[i] == "Modified" || states[i] == "Owner")
+    {
+      dirtyWrite++;
+    }
+  }
   return dirtyWrite;
 }
 
@@ -204,7 +211,7 @@ int CPU::getm()
   {
     if(states[i] == "Modified")
     {
-      dirtyWrite++;
+      //dirtyWrite++;
       m++;
     }
   }
@@ -233,7 +240,7 @@ int CPU::geto()
   {
     if(states[i] == "Owner")
     {
-      dirtyWrite++;
+      //dirtyWrite++;
       o++;
     }
   }
