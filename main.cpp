@@ -1245,10 +1245,10 @@ int main()
 
 	//number of lines in each state at the end  of the simulation for each processor
 	cout << "The number of lines in each state at the end the simulation for each processor." << endl;
-	cout << "P0: m = " << p0->getm() << ", o = " << p0->geto() << ", e = " << p0->gete() << ", s = " << p0->gets() << ", i = " << p0->geti() << endl;
-	cout << "P1: m = " << p1->getm() << ", o = " << p1->geto() << ", e = " << p1->gete() << ", s = " << p1->gets() << ", i = " << p1->geti() << endl;
-	cout << "P2: m = " << p2->getm() << ", o = " << p2->geto() << ", e = " << p2->gete() << ", s = " << p2->gets() << ", i = " << p2->geti() << endl;
-	cout << "P3: m = " << p3->getm() << ", o = " << p3->geto() << ", e = " << p3->gete() << ", s = " << p3->gets() << ", i = " << p3->geti() << endl << endl;
+	cout << "P0: m = " << p0->geto() << ", o = " << p0->getm() << ", e = " << p0->gets() << ", s = " << p0->gete() << ", i = " << p0->geti() << endl;
+	cout << "P1: m = " << p1->geto() << ", o = " << p1->getm() << ", e = " << p1->gets() << ", s = " << p1->gete() << ", i = " << p1->geti() << endl;
+	cout << "P2: m = " << p2->geto() << ", o = " << p2->getm() << ", e = " << p2->gets() << ", s = " << p2->gete() << ", i = " << p2->geti() << endl;
+	cout << "P3: m = " << p3->geto() << ", o = " << p3->getm() << ", e = " << p3->gets() << ", s = " << p3->gete() << ", i = " << p3->geti() << endl << endl;
 
   //garabage collection
   delete mypars;
