@@ -1,3 +1,5 @@
+//Authors: Kyle Curry and Ethan Lefert
+
 #include "CPU.h"
 
 using namespace std;
